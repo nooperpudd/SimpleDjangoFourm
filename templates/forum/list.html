@@ -1,0 +1,39 @@
+
+<!-- Threads -->
+<a class="new_topic" id="buttont" href="{% url forum.view.post 'new_thread' pk %}">Start new Topic</a>
+<br/>
+<!-- Forums -->
+<div id="list">
+    <table>
+        <tr>
+            <td></td>
+            <td>Post</td>
+            <td>Last post</td>
+            <td></td>
+        </tr>
+        {% for  forum in forums %}
+            <tr>
+                <td {% if forloop.last %}
+                    class="last"
+                {% endif %}  >
+                    <div class="title"><a href="{% url forum.views.forum forum.pk %}">{{ forum.title }}</a></div>
+                </td>
+                <td {% if forloop.last %}
+                    class="last"
+                {% endif %}  >{{ forum.num_posts }} </td>
+                <td {% if forloop.last %}
+                    class="last"
+                {% endif %}  >{{ forum.last_post.short|linebreaksbr }} </td>
+                <td {% if forloop.last %}
+                    class="last"
+                {% endif %}  ><a class="button" href="{%  url forum.views.forum forum.pk %}">VIEW</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+<!-- end Forums-->
+
+<!-- Next/Prev page links -->
+{% if forums %}
+
+{% endif %} 
